@@ -15,7 +15,6 @@ module.exports = {
     permission: "MANAGE_GUILD",
     prefix: "-",
     website: {
-        PORT: process.env.PORT || 5000,
         redirectURI: "https://example.com/authorize/callback",
         clientSecret: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
         scopes: ["identify"],
