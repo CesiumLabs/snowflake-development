@@ -1,0 +1,48 @@
+{
+  "name": "snowboats",
+  "version": "1.0.0",
+  "description": "Snow Bot List",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Snowflake107/SnowBoats.git"
+  },
+  "keywords": [
+    "bot-list"
+  ],
+  "author": "Snowflake107",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Snowflake107/SnowBoats/issues"
+  },
+  "homepage": "https://github.com/Snowflake107/SnowBoats#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "canvacord": "^3.0.5",
+    "canvas": "^2.6.1",
+    "canvas-constructor": "^3.2.0",
+    "cheerio": "^1.0.0-rc.3",
+    "discord-ytdl-core": "^4.0.0",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "ffmpeg-static": "^4.2.4",
+    "form-data": "^3.0.0",
+    "helmet": "^3.23.1",
+    "moment": "^2.27.0",
+    "moment-duration-format": "^2.3.2",
+    "node-fetch": "^2.6.0",
+    "node-gyp": "^7.0.0",
+    "node-pre-gyp": "^0.15.0",
+    "pm2": "^4.4.0",
+    "quick.db": "^7.1.1",
+    "serve-favicon": "^2.5.0",
+    "showdown": "^1.9.1",
+    "turndown": "^6.0.0"
+  }
+}

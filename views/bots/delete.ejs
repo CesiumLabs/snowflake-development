@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/codemirror.min.css"
+        integrity="sha256-Ez4TnBJ24JkU8Z622YHGxDaYrslkqNZ62ewvn08Skco=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/theme/monokai.min.css"
+        integrity="sha256-jjhKRkwq324IxL03pWH2MtAY3sJpHTXpF55aFrJ8bTA=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css"
+        integrity="sha256-nfuQSmJM/8wWM/S11LZmxszSv2HggH128IqmGD0hny8=" crossorigin="anonymous" />
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/codemirror.min.js"
+        integrity="sha256-zW3RviTWD2qcjPDA/ByugxSFO5EPHb8Yl0Z6o7X9Zqk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"
+        integrity="sha256-jl1+DOsSs9uABTKppOJ2GF8kXoc3XQzBtFFyS0i9Xoo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/mode/markdown/markdown.min.js"
+        integrity="sha256-NUHL9LbfGv/lDFEWr+3911S24VjrOVz+NBmgbbxtMsE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"
+        integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin="anonymous"></script>
+    <title>Delete Bot</title>
+</head>
+<body>
+    <div class="container">
+        <%- include("../part/nav.ejs") %>
+        <div class="jumbotron bg-dark text-white mt-5 rounded">
+            <h1># Do you want to delete this bot? This action can not be undone!</h1>
+            <form method="POST" action="/bot/<%= data.id %>/delete">
+                <% if (user && user.mod) { %>
+                    <div class="form-group">
+                        <label for="reason">Reason</label>
+                        <input class="form-control" type="text" name="reason" id="reason" placeholder="Please specify the reason..." maxlength="1000">
+                    </div>
+                    <button type="submit" class="btn btn-danger rounded">Delete</button>
+                    <a href="/" class="btn btn-success rounded">Cancel</a>
+                <% } %>
+                <% if (user && !user.mod) { %>
+                    <button type="submit" class="btn btn-danger rounded">Delete</button>
+                    <a href="/" class="btn btn-success rounded">Cancel</a>
+                <% } %>
+        </div>
+        <br>
+        <%- include("../part/footer.ejs") %>
+    </div>
+</body>
+
+</html>

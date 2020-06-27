@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Snowflake107">
+   <meta name="og:title" content="<%= boti.username %>">
+    <meta name="og:theme-color" content="#FF7851">
+    <meta name="og:description" content="<%= boti.short_description %>">
+    <meta property="og:image" content="<%= boti.avatarURL %>">
+
+    <meta name="twitter:title" content="<%= boti.username %>">
+    <meta name="twitter:theme-color" content="#FF7851">
+    <meta name="twitter:description" content="<%= boti.short_description %>">
+    <meta property="twitter:image" content="<%= boti.avatarURL %>">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css"
+        integrity="sha256-nfuQSmJM/8wWM/S11LZmxszSv2HggH128IqmGD0hny8=" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"
+        integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin="anonymous"></script>
+    <title><%= boti.username %></title>
+</head>
+
+<body onload="emojify()">
+    <div class="container">
+        <%- include("../part/nav.ejs") %>
+        <div class="jumbotron bg-dark text-white mt-5 rounded bot-info">
+            <% if (message) { %>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong><%= message %></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <script>
+                    setTimeout(() => {
+                        location.href = "/bot/<%= boti.id %>"
+                    }, 7000);
+                </script>
+            <% } %>
+            <div class="row" style="width: 100%;">
+                <div class="col-sm-2 bot-avatar">
+                    <img class="card-img-top" src="<%= boti.avatarURL %>" style="border-radius: 50%;" draggable="false">
+                </div>
+                <div class="col-sm">
+                    <h3 class="bot-name"><%= boti.username %></h3>
+                    <% if (bot.users.cache.get(boti.id) && bot.users.cache.get(boti.id).presence && bot.users.cache.get(boti.id).presence.status === "online") { %>
+                    <span class="bot-status badge rounded badge-success" style="font-size: 16px;">Online</span>
+                    <% } else if (bot.users.cache.get(boti.id) && bot.users.cache.get(boti.id).presence && bot.users.cache.get(boti.id).presence.status === "idle") { %>
+                    <span class="bot-status badge rounded badge-warning" style="font-size: 16px;">Idle</span>
+                    <% } else if (bot.users.cache.get(boti.id) && bot.users.cache.get(boti.id).presence && bot.users.cache.get(boti.id).presence.status === "dnd") { %>
+                    <span class="bot-status badge rounded badge-danger" style="font-size: 16px;">DND</span>
+                    <% } else { %>
+                    <span class="bot-status badge rounded badge-secondary" style="font-size: 16px;">Offline</span>
+                    <% } %>
+                    <span class="bot-upvotes badge rounded badge-info" style="font-size: 16px;">Upvotes: <%= boti.upvotes %></span>
+                    <span class="bot-approval badge rounded <%= boti.approved ? "badge-info" : "badge-danger" %>" style="font-size: 16px;"><%= boti.approved ? "Approved" : "Unapproved" %></span>
+                    <hr class="my-4">
+                    <h5 class="shortdesc"><%= boti.short_description %></h5>
+                    <br>
+                    <div class="info">
+                        <p style="color: white; mix-blend-mode: difference; font-size: 16px;" class="bot-prefix-title">Command Prefix: <span
+                                class="badge rounded badge-danger bot-prefix" style="font-size: 16px;"><%= boti.prefix %></span></p>
+                        <p style="color: white; mix-blend-mode: difference; font-size: 16px;" class="bot-owner-title">Owner: <span
+                                class="badge rounded badge-success bot-owner"
+                                style="font-size: 16px;"><a href="/user/<%= boti.owner.id %>" class="bot-owner-user" style="color: #fff;"><%= boti.owner.username %>#<%= boti.owner.discriminator %></a></span></p>
+                    </div>
+                    <br><br>
+                    <a href="<%= boti.invite %>" target="_blank" type="button"
+                        class="btn invite-button btn-primary rounded pr-3 pl-3 mr-1">Invite</a>
+                    <% if (user && boti.approved) { %>
+                    <a href="/bot/<%= boti.id %>/vote" type="button"
+                        class="btn vote-button btn-info rounded pr-3 pl-3 mr-1">Vote</a>
+                    <% } %>
+                    <% if (boti.support) { %>
+                    <a href="<%= boti.support %>" target="_blank" type="button"
+                        class="btn support-button btn-info rounded pr-3 pl-3 mr-1">Support</a>
+                    <% } %>
+                    <% if (user && (boti.owner.id == user.id || user.mod)) { %>
+                    <a href="/bot/<%= boti.id %>/edit" type="button"
+                        class="btn btn-success edit-button rounded pr-3 pl-3 mr-1">Edit</a>
+                    <a href="/bot/<%= boti.id %>/delete" type="button"
+                        class="btn btn-danger delete-button rounded pr-3 pl-3 mr-1">Delete</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron bg-not-quite-black mb-3">
+                <div id="bot-description" class="longdesc"><%- boti.long_description %></div>
+            </div>
+            <%- include("../part/footer.ejs") %>
+        </div>
+    </div>
+</body>
+
+</html>

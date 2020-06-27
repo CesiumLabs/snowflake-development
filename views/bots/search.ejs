@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Snowflake107">
+   <meta name="og:title" content="Snow Bot List">
+    <meta name="og:theme-color" content="#FF7851">
+    <meta name="og:description" content="Bot List Of Snowflake Development">
+    <meta property="og:image" content="https://snowflakedev.xyz/Snowflake.png">
+
+    <meta name="twitter:title" content="Snow Bot List">
+    <meta name="twitter:theme-color" content="#FF7851">
+    <meta name="twitter:description" content="Bot List Of Snowflake Development">
+    <meta property="twitter:image" content="https://snowflakedev.xyz/Snowflake.png">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <title>Snowflake Development ❄</title>
+</head>
+
+<body onload="emojify()">
+    <div class="container">
+        <%- include("../part/nav.ejs") %>
+        <div class="jumbotron bg-dark text-white mt-5 rounded">
+            <h1 class="text-center">Snow Bot List ❄</h1>
+            <br>
+            <form method="GET" action="/bots/search" class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="search" name="q" value="<%= q %>" required>
+                </div>
+                <button type="submit" class="ml-3 btn btn-outline-info rounded">Search</button>
+            </form>
+            <br>
+            <hr>
+            <br>
+            <h1># Search results for <code><%= q %></code></h1>
+            <br>
+            <% if (bots.length < 1) { %>
+            <h4>😦 No results were found!</h4>
+            <% } %>
+            <div class="row">
+                <% bots.forEach(tb => { %>
+                <div class="col-sm-3 mb-4">
+                    <div class="card bg-dark rounded text-white">
+                        <img src="/Snowflake.png" alt="background" class="card-bg" draggable="false">
+                        <img src="<%= tb.avatarURL %>" alt="image" class="card-imge" draggable="false">
+                        <span class="bot-upvotes badge rounded badge-info"
+                            style="font-size: 14px;width: 40%;margin-left: 140px;margin-top: -55px;">Upvotes:
+                            <%= tb.upvotes %></span>
+                        <div class="card-body mt-4">
+                            <h5 class="card-title"><%= tb.username %></h5>
+                            <p class="card-text"><%= tb.short_description %></p>
+                            <a href="/bots/<%= tb.id %>" class="btn btn-success rounded">View</a>
+                            <a href="<%= tb.invite %>" target="_blank" class="btn btn-info rounded">Invite</a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+        <%- include("../part/footer.ejs") %>
+    </div>
+</body>
+</html>

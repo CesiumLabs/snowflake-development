@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Snowflake107">
+    <meta name="og:title" content="<%= mem.tag %>">
+    <meta name="og:theme-color" content="#FF7851">
+    <meta name="og:description" content="<%= bot.db.get(`bio_${mem.id}`) || "This is a mysterious user." %>">
+    <meta property="og:image" content="<%= mem.displayAvatarURL() %>">
+
+    <meta name="twitter:title" content="<%= mem.tag %>">
+    <meta name="twitter:theme-color" content="#FF7851">
+    <meta name="twitter:description" content="<%= bot.db.get(`bio_${mem.id}`) || "This is a mysterious user." %>">
+    <meta property="twitter:image" content="<%= mem.displayAvatarURL() %>">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <title><%= mem.tag %></title>
+</head>
+
+<body onload="emojify()">
+    <div class="container">
+        <%- include("./part/nav.ejs") %>
+        <div class="jumbotron bg-dark text-white mt-5 rounded">
+            <center>
+                <img src="<%= mem.displayAvatarURL() %>" draggable="false" alt="avatar"
+                    class="img-fluid mr-5" style="border-radius: 50%;">
+                <br><br><br>
+                <h1><%= mem.username %><i style="color: #99AAB5;">#<%= mem.discriminator %></i><% if (bot.owner.id == mem.id) { %>
+                    <b title="Snowflake ❄" class="pointer"> 👑</b>
+                    <% } %>
+                    <% if (bot.booster.has(mem.id)) { %>
+                    <img src="/booster.png" alt="mod" class="rounded img-fluid pointer" title="Nitro Booster" height="30" width="30"
+                        draggable="false">
+                    <% } %>
+                </h1>
+                <br>
+                <img src="/Snowflake.png" alt="member" class="rounded img-fluid pointer" title="Member" height="50" width="50"
+                    draggable="false">
+                <% if (bot.admins.has(mem.id)) { %>
+                <img src="/admin.png" alt="admin" class="rounded img-fluid pointer" title="Administrator" height="50" width="50"
+                    draggable="false">
+                <img src="/verified.png" alt="verified" class="rounded img-fluid pointer" title="Verified" height="50" width="50"
+                    draggable="false">
+                <% } %>
+                <% if (bot.mods.has(mem.id)) { %>
+                <img src="/mod.png" alt="mod" class="rounded img-fluid pointer" title="Moderator" height="50" width="50"
+                    draggable="false">
+                <img src="/verified.png" alt="verified" class="rounded img-fluid pointer" title="Verified" height="50" width="50"
+                    draggable="false">
+                <% } %>
+                <% if (bot.supporters.has(mem.id)) { %>
+                <img src="/supporter.png" alt="mod" class="rounded img-fluid pointer" title="Supporter" height="30" width="30"
+                    draggable="false">
+                <% } %>
+                <br><br>
+                <h5><%= bot.db.get(`bio_${mem.id}`) || "This is a mysterious user." %></h5>
+                <br><br>
+                <% if (bot.db.get("github_"+mem.id)) { %>
+                <button onclick="location.href=`https://github.com/<%= bot.db.get('github_'+mem.id) %>`"
+                    class="btn btn-secondary rounded">GitHub</button>
+                <% } %>
+                <% if (bot.db.get("twitter_"+mem.id)) { %>
+                <button
+                    onclick="location.href=`https://twitter.com/<%= bot.db.get('twitter_'+mem.id) %>`"
+                    class="btn btn-primary rounded">Twitter</button>
+                <% } %>
+            </center>
+            <hr>
+            <br>
+            <% if (bots) { %>
+            <h3 class="text-center">This user has total <%= bots.length %> bot<%= bots.length == 1 ? "" : "s" %>.</h3>
+            <br><br>
+            <div class="table-responsive">
+                <table class="table table-striped table-dark table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">S.N.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Approved</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% bots.forEach((b, i) => { %>
+                        <tr>
+                            <th scope="row"><%= i + 1 %>.</th>
+                            <td><%= b.username %></td>
+                            <td><%= b.approved ? "Yes" : "No" %></td>
+                            <td><a href="/bot/<%= b.id %>" class="btn btn-success rounded">View</a></td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <% } else { %>
+            <h3 class="text-center">This user doesn't have a bot listed in this website.</h3>
+            <% } %>
+        </div>
+        <%- include("./part/footer.ejs") %>
+    </div>
+</body>
+
+</html>

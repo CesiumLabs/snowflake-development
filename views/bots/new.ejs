@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="/bootstrap.min.css">
+        <link rel="stylesheet" href="/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/codemirror.min.css"
+            integrity="sha256-Ez4TnBJ24JkU8Z622YHGxDaYrslkqNZ62ewvn08Skco=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/theme/monokai.min.css"
+            integrity="sha256-jjhKRkwq324IxL03pWH2MtAY3sJpHTXpF55aFrJ8bTA=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css"
+            integrity="sha256-nfuQSmJM/8wWM/S11LZmxszSv2HggH128IqmGD0hny8=" crossorigin="anonymous" />
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/codemirror.min.js"
+            integrity="sha256-zW3RviTWD2qcjPDA/ByugxSFO5EPHb8Yl0Z6o7X9Zqk=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"
+            integrity="sha256-jl1+DOsSs9uABTKppOJ2GF8kXoc3XQzBtFFyS0i9Xoo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/mode/markdown/markdown.min.js"
+            integrity="sha256-NUHL9LbfGv/lDFEWr+3911S24VjrOVz+NBmgbbxtMsE=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"
+            integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin="anonymous"></script>
+        <title>Add Bot</title>
+    </head>
+    <body>
+        <div class="container">
+            <%- include("../part/nav.ejs") %>
+            <div class="jumbotron bg-dark text-white mt-5 rounded">
+                <% if (error) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong><%= error %></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                    <h4 class="text-center"><i style="color: red;">*</i> = Required</h4>
+                    <br>
+                    <h1># Details</h1>
+                    <form method="POST" action="/bot/new">
+                        <div class="form-group">
+                            <label for="id">Client ID <i style="color: red;" title="Required">*</i></label>
+                            <input class="form-control" type="text" name="id" id="id" placeholder="Your bot id..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prefix">Prefix <i style="color: red;" title="Required">*</i></label>
+                            <input type="text" class="form-control rounded" id="prefix" name="prefix"
+                                placeholder="Command Prefix" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="short_description">Short Description <i style="color: red;" title="Required">*</i></label>
+                            <input type="text" class="form-control rounded" id="short_description"
+                                name="short_description" placeholder="A bot that allows you to do stuffs" minlength="50" maxlength="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="support">Support Server</label>
+                            <input type="text" class="form-control rounded" id="support" name="support"
+                                placeholder="Support Server">
+                        </div>
+                        <div class="form-group">
+                            <label for="invite">Invite Link</label>
+                            <input type="text" class="form-control rounded" id="invite" name="invite"
+                                placeholder="Bot Invite Link">
+                        </div>
+                        <div class="form-group">
+                            <label for="long_desc">Long Description (Supports HTML & Markdown) <i style="color: red;" title="Required">*</i></label>
+                            <textarea class="form-control rounded" id="long_desc" name="long_description" rows="3" minlength="300"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-outline-info rounded" style="width: 100%;">Submit</button>
+                    </form>
+                    <br>
+                    <h1># Preview</h1>
+                    <hr>
+                    <iframe id="preview" frameBorder="0" width="100%" onload="this.style.height = this.contentWindow.document.documentElement.scrollHeight + 'px'"></iframe>
+                    <hr>
+                </div>
+                <br>
+            <%- include("../part/footer.ejs", { emoji: false }) %>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightBlock(block);
+                });
+            });
+
+            <% if (error && error == "You must join our discord server in order to add bots.") { %>
+              var incs = document.getElementsByTagName("input");
+              for (var i = 0; i < incs.length; i++) {
+                  if (incs[i].type === 'submit') {
+                      incs[i].disabled = true;
+                  }
+              }
+            <% } %>
+
+            var editor = CodeMirror.fromTextArea(document.getElementById("long_desc"), {
+                theme: "monokai",
+                lineNumbers: true,
+                firstLineNumber: 0,
+                scrollbarStyle: null,
+                mode: "markdown",
+                viewportMargin: Infinity
+            });
+
+            editor.on("change", () => {
+                updatePreview();
+            });
+
+            function updatePreview() {
+                    var previewFrame = document.getElementById('preview');
+                    var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                    var converter = new showdown.Converter({
+                        emoji: true,
+                        literalMidWordUnderscores: true,
+                        strikethrough: true,
+                        tables: true,
+                        tasklists: true,
+                        smoothLivePreview: true,
+                        simpleLineBreaks: true,
+                        openLinksInNewWindow: true
+                    });
+                    converter.setFlavor('github');
+                    preview.open();
+                    let val = editor.getValue();
+                    let html = converter.makeHtml(val);
+                    html += `<link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+                    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/monokai-sublime.min.css"
+                    integrity="sha256-nfuQSmJM/8wWM/S11LZmxszSv2HggH128IqmGD0hny8=" crossorigin="anonymous">
+                    <script src="//twemoji.maxcdn.com/twemoji.min.js"><\/script>
+                    <style>
+                        body { 
+                            color: #FFFFFF !important; 
+                            font-family: 'Play', sans-serif !important;
+                            font-size: 14px !important; 
+                        }
+                        a {
+                            color: #7289DA;
+                        }
+                        code {
+                            color: #eb1e66;
+                        }
+                        blockquote {
+                            border-left: 5px solid #7289DA;
+                            border-radius: 3px;
+                            margin-left: 3px;
+                            padding: 2px;
+                        }
+                    <\/style>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js">"<\/script>
+                    <script>
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                        twemoji.size = "36x36";
+                        twemoji.parse(document.body);
+                        document.querySelectorAll('pre code').forEach((block) => {
+                                hljs.highlightBlock(block);
+                            });
+                        });
+                    <\/script>`;
+                    preview.write(html)
+                    preview.close();
+            }
+        </script>
+    </body>
+    </html>

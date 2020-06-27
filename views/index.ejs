@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Snowflake107">
+    <meta name="og:title" content="Snowflake Development ❄️">
+    <meta name="og:theme-color" content="#FF7851">
+    <meta name="og:description" content="Official Website Of Snowflake Development">
+    <meta property="og:image" content="https://snowflakedev.xyz/Snowflake.png">
+
+    <meta name="twitter:title" content="Snowflake Development ❄️">
+    <meta name="twitter:theme-color" content="#FF7851">
+    <meta name="twitter:description" content="Official Website Of Snowflake Development">
+    <meta property="twitter:image" content="https://snowflakedev.xyz/Snowflake.png">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <title>Snowflake Development ❄</title>
+</head>
+
+<body onload="emojify()">
+    <div class="container">
+        <%- include("./part/nav.ejs") %>
+        <div class="jumbotron mt-5 bg-dark text-white">
+            <center><img src="/Snowflake.png" draggable="false" width="200" height="200" alt="img" loading="lazy"
+                    style="border-radius: 50%;"></center>
+            <br />
+            <h1 class="text-center">Snowflake Development ❄</h1>
+            <br />
+            <hr>
+            <center>
+                <a href="https://npmjs.com/~snowflake7" target="_blank" class="btn btn-danger rounded mr-1">NPM</a>
+                <a href="https://github.com/Snowflake107" target="_blank"
+                    class="btn btn-secondary rounded mr-1">GitHub</a>
+                <a href="/discord" target="_blank" class="btn btn-primary rounded">Discord</a>
+            </center>
+            <hr>
+            <div class="jumbotron bg-dark text-white">
+                <h2># Projects</h2>
+                <br>
+                <div class="card-deck">
+                    <div class="card bg-primary text-white rounded">
+                        <img src="/quickeco.png" height="300" width="150" class="card-img-top" alt="avatar"
+                            draggable="false">
+                        <div class="card-body">
+                            <h5 class="card-title">Quick.eco</h5>
+                            <p class="card-text">A simple & easy to use economy package for discord bots using quick.db
+                            </p><br>
+                            <p class="card-text"><a href="https://npmjs.com/package/quick.eco" target="_blank"
+                                    class="btn btn-outline-danger rounded mr-1">NPM</a>
+                                <a href="https://github.com/Snowflake107/quick.eco" target="_blank"
+                                    class="btn btn-outline-secondary rounded mr-1">GitHub</a></p>
+                        </div>
+                    </div>
+
+                    <div class="card bg-primary text-white rounded">
+                        <img src="/ytdl.png" height="300" width="150" class="card-img-top" alt="avatar"
+                            draggable="false">
+                        <div class="card-body">
+                            <h5 class="card-title">Discord YTDL Core</h5>
+                            <p class="card-text">Simple ytdl wrapper for discord bots with custom ffmpeg args support.
+                            </p><br><br>
+                            <p class="card-text"><a href="https://npmjs.com/package/discord-ytdl-core" target="_blank"
+                                    class="btn btn-outline-danger rounded mr-1">NPM</a>
+                                <a href="https://github.com/Snowflake107/discord-ytdl-core" target="_blank"
+                                    class="btn btn-outline-secondary rounded mr-1">GitHub</a></p>
+                        </div>
+                    </div>
+
+                    <div class="card bg-primary text-white rounded">
+                        <img src="/canvacord.png" height="300" width="150" class="card-img-top" alt="avatar"
+                            draggable="false">
+                        <div class="card-body">
+                            <h5 class="card-title">Canvacord</h5>
+                            <p class="card-text">Simple & easy to use image manipulation module.</p><br><br>
+                            <p class="card-text"><a href="https://npmjs.com/package/canvacord" target="_blank"
+                                    class="btn btn-outline-danger rounded mr-1">NPM</a>
+                                <a href="https://github.com/Snowflake107/canvacord" target="_blank"
+                                    class="btn btn-outline-secondary rounded mr-1">GitHub</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <h1># Latest Video</h1>
+            <center>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" id="video" allowfullscreen style="border: 5px solid #4D5E94;border-radius:5px; box-shadow: 5px 5px #2C2F33;"></iframe>
+            </div>
+                <h1 class="text-center mt-3" id="video_title"></h1>
+            </center>
+            <br>
+            <hr>
+            <br>
+            <h1># Discord</h1>
+            <center>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://discordapp.com/widget?id=480939855476686849&theme=dark" style="box-shadow: 5px 5px #2C2F33;border-radius:5px;" allowtransparency="true"></iframe>
+            </div>
+            </center>
+        </div>
+        <%- include("./part/footer.ejs") %>
+    </div>
+    <script>
+        var URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=UCvklmpoAZntoOpr7EyTierA')}`;
+        fetch(URL)
+            .then(res => res.json())
+            .then(data => {
+                var video = data.items[0];
+                var id = video.link.substr(video.link.indexOf("=") + 1);
+                $("#video").attr("src", "https://youtube.com/embed/" + id + "?controls=1&showinfo=0&rel=0");
+                document.getElementById("video_title").innerText = video.title;
+            })
+            .catch(e => {
+                console.error(e);
+                $("#video").attr("src", "https://youtube.com/embed/-4FBypzghHM?controls=1&showinfo=0&rel=0");
+                document.getElementById("video_title").innerText = "[ Ep. 1 ] How To Make A RANK CARD in Discord.js!? - Tutorial (2020) || Snowflake Development";
+            });
+    </script>
+</body>
+
+</html>
