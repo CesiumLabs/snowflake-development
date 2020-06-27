@@ -1,5 +1,5 @@
 # snowflake-development
-Source code of Snowflake Development discord server :)
+Source code of Snowflake Development :)
 
 # Live instance
 **[https://snowflakedev.xyz](https://snowflakedev.xyz)**
