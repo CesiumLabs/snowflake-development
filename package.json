@@ -1,14 +1,14 @@
 {
   "name": "snowboats",
   "version": "1.0.0",
-  "description": "Snow Bot List",
+  "description": "Snowflake Development",
   "main": "index.js",
   "scripts": {
     "test": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Snowflake107/SnowBoats.git"
+    "url": "git+https://github.com/Snowflake107/snowflake-development.git"
   },
   "keywords": [
     "bot-list"
@@ -16,14 +16,13 @@
   "author": "Snowflake107",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Snowflake107/SnowBoats/issues"
+    "url": "https://github.com/Snowflake107/snowflake-development/issues"
   },
-  "homepage": "https://github.com/Snowflake107/SnowBoats#readme",
+  "homepage": "https://github.com/Snowflake107/snowflake-development#readme",
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
     "canvacord": "^3.0.5",
     "canvas": "^2.6.1",
-    "canvas-constructor": "^3.2.0",
     "cheerio": "^1.0.0-rc.3",
     "discord-ytdl-core": "^4.0.0",
     "discord.js": "^12.2.0",
@@ -39,7 +38,6 @@
     "node-fetch": "^2.6.0",
     "node-gyp": "^7.0.0",
     "node-pre-gyp": "^0.15.0",
-    "pm2": "^4.4.0",
     "quick.db": "^7.1.1",
     "serve-favicon": "^2.5.0",
     "showdown": "^1.9.1",
