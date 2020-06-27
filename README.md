@@ -11,6 +11,7 @@ Source code of Snowflake Development discord server :)
 - Other random stuffs
 
 # Info
+This is a simple project made for my discord server.
 This project uses **[@quick.db](https://npmjs.com/package/quick.db)** to store data.
 
 # Note
