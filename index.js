@@ -23,15 +23,15 @@ client.on("ready", async () => {
     client.owner = client.guilds.cache.get(client.config.guilds.main).owner;
     client.admins = client.guilds.cache.get(client.config.guilds.main).members.cache.filter(m => !m.user.bot && m.hasPermission("ADMINISTRATOR"));
     client.mods = client.guilds.cache.get(client.config.guilds.main).members.cache.filter(m => !m.user.bot && !m.hasPermission("ADMINISTRATOR") && m.hasPermission("KICK_MEMBERS"));
-    client.booster = client.guilds.cache.get(client.config.guilds.main).members.cache.filter(m => m.roles.cache.has("708292755432013894"));
-    client.supporters = client.guilds.cache.get(client.config.guilds.main).members.cache.filter(m => m.roles.cache.has("724213951231164478"));
+    client.booster = client.guilds.cache.get(client.config.guilds.main).members.cache.filter(m => m.roles.cache.has("01234567890123456789"));
+    client.supporters = client.guilds.cache.get(client.config.guilds.main).members.cache.filter(m => m.roles.cache.has("01234567890123456789"));
     setInterval(() => {
         client.syncDatabase();
     }, 1.8e+6);
 });
 
 function log(data, ...message) {
-    let wh = new Discord.WebhookClient("723941113202737243", "Bl_0egJWNYEprxkLjG_qh7EkezgsSauF3ium8j1GlIIFG6gHXS5pmvAP7ekVOCfowPNg");
+    let wh = new Discord.WebhookClient("01234567890123456789", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
     return wh.send(...message, data).catch(e => {
         client.channels.cache.get(client.config.channels.log).send(...message);
     });
@@ -61,7 +61,7 @@ client.on("approve", data => {
 
 client.on("guildMemberAdd", (member) => {
     if (member.guild.id == client.mainGuild.id) {
-        member.guild.channels.cache.get("711061446355583027").setName(`❯ Total: ${member.guild.memberCount}`).catch(e => {});
+        member.guild.channels.cache.get("01234567890123456789").setName(`❯ Total: ${member.guild.memberCount}`).catch(e => {});
         if (member.user.bot && (client.db.get(`bot_${member.id}`) !== null && !!client.db.get(`bot_${member.id}`).approved)) {
             member.roles.add(client.config.roles.bots).catch(e => {});
         }
@@ -77,7 +77,7 @@ client.on("guildMemberAdd", (member) => {
 client.on("guildMemberRemove", member => {
     let botsof = [];
     if (member.guild.id == client.mainGuild.id) {
-      member.guild.channels.cache.get("711061446355583027").setName(`❯ Total: ${member.guild.memberCount}`).catch(e => {});
+      member.guild.channels.cache.get("01234567890123456789").setName(`❯ Total: ${member.guild.memberCount}`).catch(e => {});
         if (member.user.bot && client.db.get(`bot_${member.id}`) !== null) {
             let bot = client.db.get(`bot_${member.id}`);
             client.db.delete(`bot_${member.id}`);
@@ -122,13 +122,13 @@ client.on("decline", data => {
 });
 
 client.on("messageUpdate", async (oldMessage, newMessage) => {
-  if (newMessage.channel.id === "708348623347515473") counter(newMessage, client, true);
+  if (newMessage.channel.id === "01234567890123456789") counter(newMessage, client, true);
 });
 
 client.on("message", async (message) => {
     if (message.author.bot || !message.guild) return;
-    if (message.channel.id == "724608503464984576") return chat(message);
-    if (message.channel.id === "708348623347515473") counter(message, client, false);
+    if (message.channel.id == "01234567890123456789") return chat(message);
+    if (message.channel.id === "01234567890123456789") counter(message, client, false);
     if (!message.content.startsWith("-")) return;
     let args = message.content.slice(1).trim().split(/ +/g);
     let cmd = args.shift().toLowerCase();
@@ -143,8 +143,8 @@ function counter(message, client, edit = false) {
   let count = db.fetch(`counter_${message.guild.id}`);
   if (count === null)
     count = db.set(`counter_${message.guild.id}`, {
-      number: 314,
-      author: "687357707635654688"
+      number: 0,
+      author: "01234567890123456789"
     });
   if (db.get(`noc_${message.author.id}`) === true)
     return message.reply("You are blacklisted!").then(m => {
@@ -184,7 +184,7 @@ function counter(message, client, edit = false) {
 
 function block(message) {
   if (message.author.bot) return;
-  let role = message.guild.roles.cache.get("715111592726888472");
+  let role = message.guild.roles.cache.get("01234567890123456789");
   message.member.roles.add(role);
   db.set("noc_" + message.author.id, true);
   return message.react("🚫");
